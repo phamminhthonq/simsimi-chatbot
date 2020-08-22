@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!--
+
+ /$$$$$$$                /$$             /$$    
+| $$__  $$              |__/            | $$    
+| $$  \ $$ /$$$$$$/$$$$  /$$ /$$$$$$$  /$$$$$$  
+| $$$$$$$/| $$_  $$_  $$| $$| $$__  $$|_  $$_/  
+| $$____/ | $$ \ $$ \ $$| $$| $$  \ $$  | $$    
+| $$      | $$ | $$ | $$| $$| $$  | $$  | $$ /$$
+| $$      | $$ | $$ | $$| $$| $$  | $$  |  $$$$/
+|__/      |__/ |__/ |__/|__/|__/  |__/   \___/  
+
+-->
+<head>
+	<title>Chat With Simsimi | Pmint</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="shortcut icon" href="assets/favicon.png"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-toward.css"/>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://unpkg.com/@popperjs/core@2"></script>
+	<script src="https://unpkg.com/tippy.js@6"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script>
+		$(window).on('load', function(){
+			$('.wrap').addClass('complete')
+		})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="loading">
+			<div class="bounceball"></div>
+			<div class="text-loading">NOW LOADING . . .</div>
+		</div>
+	</div>
+	<div id="particles-js"></div>
+	<button class="credit" title="Credit" ><i class="fas fa-info"></i></button>
+	<header class="header">
+		<h1>Chat with Simsimi 🤣</h1>
+		<p>Design & Develop by <a href="https://www.facebook.com/thonqphamm404" target="_blank">pmint</a></p>
+	</header>
+		<div class="info-wrap">
+			<h2>Credit</h2><button class="closePop" onclick="closePop()"><i class="fas fa-times"></i></button>
+			<code>This app was designed and developed by <strong>pmint</strong> for everyone.</code><br>
+			<code>I make awesome chatbot apps with artificial intelligence, chatbot will help you to relax, creates joy for you and answer all your questions. 😘 😍 💕</code>
+			<h2>How it works?</h2>
+			<code>It uses an API provided by a member of J2Team Community.</code><br>
+			<code>You just need to select language, type your messages and send it, a robot called Simsimi will respond to you with funny messages. ^^</code>
+			<h5>Thanks for using this app 💕</h5>
+			<h2>Have a nice day ! ❤</h2>
+			<p>*Double Click To Close This Pop-up</p>
+		</div>
+		<button class="delMsg" title="Delete All Messages" id="delMsg">
+			<i class="fas fa-eraser"></i>
+		</button>
+		<label id="themes" title="Change theme">
+			<input type="checkbox" name="" id="theme-mode" checked="true">
+			<span class="check"></span>
+			<span class="theme-text on">DARK MODE</span>
+			<span class="theme-text off">LIGHT MODE</span>
+		</label>
+		<div class="share-content">
+			<span class="shareNoti">Share Now !!!</span>
+			<button onclick="shareFb()" class="fb" type="button" title="Facebook"><i class="fab fa-facebook-f"></i></button>
+			<button onclick="shareTwitter()" class="tw" type="button" title="Twitter"><i class="fab fa-twitter"></i></button>
+			<button onclick="shareLinkedin()" class="lk" type="button" title="Linkedin"><i class="fab fa-linkedin-in"></i></button>
+			<button onclick="shareReddit()" class="rd" type="button" title="Reddit"><i class="fab fa-reddit"></i></button>
+		</div>
+		<!-- <div class="delNoti">
+			<p><i class="fad fa-check-double"></i> All Messages Are Deleted 🤗</p>
+		</div>
+		<div class="modeNoti">
+			<p><i class="fad fa-check-double"></i> Mode Changed 🤗</p>
+		</div> -->
+		<div class="content">
+			<ul class="msg-list">
+				<!-- <div class="ticontainer" style="display: none;">
+					<div class="tiblock">
+						<div class="tidot"></div>
+						<div class="tidot"></div>
+						<div class="tidot"></div>
+					</div>
+				</div> -->
+			</ul>
+		</div>
+		<div class="form-input">
+			<div class="text-input">
+				<div class="form-group text">
+					<div id="container">
+						<div class="chat-bubble" id="ghost-bubble"></div>
+						<input id="ghost-input" type="text" placeholder="Type a message" autocomplete="off"/>
+							<div class="ghost">
+								<div class="ghost__face">
+									<div class="ghost__eyes">
+										<div class="ghost__eyes-l"></div>
+										<div class="ghost__eyes-r"></div>
+									</div>
+									<div class="ghost__mouth"></div>
+								</div>
+							<div class="ghost__torso"></div>
+							<div class="ghost__hands">
+								<div class="ghost__hands-l"></div>
+								<div class="ghost__hands-r"></div>
+							</div>
+							<div class="ghost__legs"></div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group lang">
+					<label class="langLabel" for="lanParam">Language</label>
+					<div class="custom-select">
+						<select name="lang" id="lanParam"> 
+							<option value="vn">Tiếng Việt Xịn</option>
+							<option value="en">English</option>
+							<option value="af">Afrikaans</option>
+							<option value="al">Shqip</option>
+							<option value="ar">العربية</option>
+							<option value="as">অসমীয়া</option>
+							<option value="az">Azərbaycanca</option>
+							<option value="be">Беларуская</option>
+							<option value="bg">Български</option>
+							<option value="bn">বাংলা</option>
+							<option value="br">Brezhoneg</option>
+							<option value="bs">Bosanski</option>
+							<option value="ca">Català</option>
+							<option value="ch">中文(繁體)</option>
+							<option value="cs">Čeština</option>
+							<option value="cx">Cebuano</option>
+							<option value="cy">Cymraeg</option>
+							<option value="da">Dansk</option>
+							<option value="de">Deutsch</option>
+							<option value="el">Ελληνικά</option>
+							<option value="es">Español</option>
+							<option value="et">Eesti</option>
+							<option value="eu">Euskara</option>
+							<option value="fa">فارسی</option>
+							<option value="fi">Suomi</option>
+							<option value="fr">Français</option>
+							<option value="fy">Frysk</option>
+							<option value="gl">Galego</option>
+							<option value="gn">Avañe'ẽ</option>
+							<option value="gu">ગુજરાતી</option>
+							<option value="he">עברית</option>
+							<option value="hi">हिन्दी</option>
+							<option value="hr">Hrvatski</option>
+							<option value="hu">Magyar</option>
+							<option value="hy">Հայերեն</option>
+							<option value="id">Bahasa Indonesia</option>
+							<option value="is">Íslenska</option>
+							<option value="it">Italiano</option>
+							<option value="ja">日本語</option>
+							<option value="jv">Basa Jawa</option>
+							<option value="ka">ქართული</option>
+							<option value="kh">ខ្មែរ</option>
+							<option value="kk">Қазақ тілі</option>
+							<option value="kn">ಕನ್ನಡ</option>
+							<option value="ko">한국어</option>
+							<option value="ku">Kurdî (Kurmancî)</option>
+							<option value="lt">Lietuvių</option>
+							<option value="lv">Latviešu</option>
+							<option value="mk">Македонски</option>
+							<option value="ml">മലയാളം</option>
+							<option value="mn">Монгол</option>
+							<option value="mr">मराठी</option>
+							<option value="ms">Bahasa Melayu</option>
+							<option value="my">ဗမာစာ</option>
+							<option value="nb">Norsk (Bokmål)</option>
+							<option value="ne">नेपाली</option>
+							<option value="nl">Nederlands</option>
+							<option value="or">ଓଡ଼ିଆ</option>
+							<option value="pa">ਪੰਜਾਬੀ</option>
+							<option value="ph">Filipino</option>
+							<option value="pl">Język polski</option>
+							<option value="ps">پښتو</option>
+							<option value="pt">Português</option>
+							<option value="ro">Română</option>
+							<option value="rs">Српски</option>
+							<option value="ru">Русский</option>
+							<option value="rw">Ikinyarwanda</option>
+							<option value="si">සිංහල</option>
+							<option value="sk">Slovenčina</option>
+							<option value="sl">Slovenščina</option>
+							<option value="sv">Svenska</option>
+							<option value="sw">Kiswahili</option>
+							<option value="ta">தமிழ்</option>
+							<option value="te">తెలుగు</option>
+							<option value="tg">Тоҷикӣ</option>
+							<option value="th">ไทย</option>
+							<option value="tr">Türkçe</option>
+							<option value="uk">Українська</option>
+							<option value="ur">اردو</option>
+							<option value="uz">O'zbek</option>
+							<option value="zh">中文(简体)</option>
+						</select>
+					</div>
+					<!-- <div class="autocomplete" style="width:300px;"> -->
+					<!-- <input id="lanParam" name="lang" type="text" placeholder="Language" value="vn" autocomplete="off"> -->
+					</div>
+				</div>
+			</div>
+			<div class="form-group submit">
+				<button id="submit" class="btn submit-btn" data-tippy-content="Send Messages Now :>"><span id="send-span">Send</span></button>
+			</div>
+
+
+		
+		
+					<!--All Script File Here-->
+
+	<script src="https://unpkg.com/scrollreveal"></script>
+	<script src="assets/js/scrollreveal.js"></script>
+	<!-- <script src="autocomplete.js"></script> -->
+	<script src="assets/js/particles.min.js"></script>
+	<script src="assets/js/particles-init.js"></script>
+	<script>
+		// window.addEventListener("beforeunload", function(event) {
+		// 	event.returnValue = "Write something clever here..";
+		// });
+		tippy('#submit',{
+			animation: 'shift-toward',
+			arrow: false,
+			theme: 'pmint',
+			placement: 'bottom',
+			size: 'large',
+			// trigger: 'focus',
+		});
+		tippy('.delMsg',{
+			animation: 'shift-toward',
+			arrow: false,
+			theme: 'pmint',
+			placement: 'left',
+			size: 'large',
+			content:'Delete Messages'
+			// trigger: 'focus',
+		});
+	</script>
+	<script>
+		var title = document.title;
+		function shareFb(){
+			window.open("https://www.facebook.com/sharer/sharer.php?u=" + document.URL + "&t=" + title, title, "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900");
+		}
+		function shareTwitter(){
+			window.open("https://www.twitter.com/share?url=" + document.URL + "&text=" + title, title, "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900");
+		}
+		function shareLinkedin(){
+			window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + document.URL + "&title=" + title, title, "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900");
+		}
+		function shareReddit(){
+			window.open("https://www.reddit.com/submit?url=" + document.URL + "&title=" + title, title, "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900");
+		}
+		const shareNoiti = document.querySelector('.shareNoti');
+		document.querySelector('.fb').addEventListener("mouseover", hideShareNoti);
+		document.querySelector('.tw').addEventListener("mouseover", hideShareNoti);
+		document.querySelector('.lk').addEventListener("mouseover", hideShareNoti);
+		document.querySelector('.rd').addEventListener("mouseover", hideShareNoti);
+		document.querySelector('.fb').addEventListener("mouseout", showShareNoti);
+		document.querySelector('.tw').addEventListener("mouseout", showShareNoti);
+		document.querySelector('.lk').addEventListener("mouseout", showShareNoti);
+		document.querySelector('.rd').addEventListener("mouseout", showShareNoti);
+		function hideShareNoti(){
+			shareNoiti.classList.toggle('hide');
+		}
+		function showShareNoti(){
+			shareNoiti.classList.remove('hide');
+		}
+	</script>
+	<script src="assets/js/app.js"></script>
+</body>
+<!--
+ ______________________________________
+< Code trông chán đời các bác nhể ◉_◉ >
+ --------------------------------------
+    \                                  ___-------___
+     \                             _-~~             ~~-_
+      \                         _-~                    /~-_
+             /^\__/^\         /~  \                   /    \
+           /|  O|| O|        /      \_______________/        \
+          | |___||__|      /       /                \          \
+          |          \    /      /                    \          \
+          |   (_______) /______/                        \_________ \
+          |         / /         \                      /            \
+           \         \^\\         \                  /               \     /
+             \         ||           \______________/      _-_       //\__//
+               \       ||------_-~~-_ ------------- \ --/~   ~\    || __/
+                 ~-----||====/~     |==================|       |/~~~~~
+                  (_(__/  ./     /                    \_\      \.
+                         (_(___/                         \_____)_)
+-->
+</html>
